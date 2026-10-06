@@ -1,0 +1,20 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: daege-be
+
+    restart: unless-stopped
+
+    ports:
+      - "${APP_PORT}:41000"
+
+    environment:
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_USER=${DB_USER}
+      - DB_URL=${DB_URL}
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
